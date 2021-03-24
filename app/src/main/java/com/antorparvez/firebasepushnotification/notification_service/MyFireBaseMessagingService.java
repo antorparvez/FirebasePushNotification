@@ -10,6 +10,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -30,6 +31,8 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         message = remoteMessage.getData().get("Message");
         photo = remoteMessage.getData().get("Photo");
 
+        goToToast();
+
 
 /*
         NotificationCompat.Builder builder =
@@ -43,6 +46,8 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
 
+
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "My Notifications", NotificationManager.IMPORTANCE_DEFAULT);
 
@@ -53,6 +58,9 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
             notificationChannel.setVibrationPattern(new long[]{0, 1000, 500, 1000});
             notificationChannel.enableVibration(true);
             notificationManager.createNotificationChannel(notificationChannel);
+
+
+
         }
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -78,9 +86,14 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         notificationManager.notify(/*notification id*/0, notificationBuilder.build());
 
 
+
+
     }
 
+    private void goToToast() {
 
+        startActivity(new Intent(getApplicationContext(),MainActivity2.class));
+    }
 
 
 }
